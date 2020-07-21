@@ -12,9 +12,9 @@ SIMULTANEUS_ASTEROIDS=10
 
 ### FONT ###
 FONT='resources/fonts/dorado.ttf'
-FONT_SIZE_BIG=62
-FONT_SIZE_MEDIUM=32
-FONT_SIZE_SMALL=22
+FONT_SIZE_BIG=55
+FONT_SIZE_MEDIUM=35
+FONT_SIZE_SMALL=25
 
 ### GENERAL ###
 BACKGROUND_IMAGE='resources/images/space.jpg'
@@ -27,16 +27,17 @@ TEXT_STRONG_COLOUR=(255,0,0) #red
 TEXT_WEAK_COLOUR=(255,255,255) #white
 
 ### MUSIC ###
+BOOM_SOUND='./resources/sounds/boom_sound.mp3'
 GAME_MUSIC='./resources/sounds/game_music.mp3'
-GAME_OVER_SOUND='./resources/sounds/game_over_sound.mp3'
+GAME_OVER_SOUND='./resources/sounds/game_over_sound.wav'
 
 ### ROCKET ###
 ROCKET_IMAGE='./resources/images/spaceship.png'
 ROCKET_RESIZE_IMAGE=(90,70)
 ROCKET_SPEED=5
 
-### TEXT ###
-GAME_NAME='Another world :)'
+### TEXT ###    
+GAME_NAME='ANOTHER WORLD'
 GAME_OVER_1_TEXT='GAME OVER'
 GAME_OVER_2_TEXT='<SPACE> para comenzar de nuevo'
 INSTRUCTIONS='Para mover usa las flechas. Cierra ventana para salir'

@@ -37,15 +37,15 @@ class Rocket(pg.sprite.Sprite):
 
         else:             
             self.boom=True
-            pg.mixer.music.pause()
+            #pg.mixer.music.pause()
         
             self.image=pg.image.load(BOOM_IMAGE)
             self.image=pg.transform.scale(self.image,BOOM_RESIZE_IMAGE)
             self.rocket_speed=0
 
-            pg.mixer.init()
-            self.game_over_sound=pg.mixer.music.load(GAME_OVER_SOUND)
-            pg.mixer.music.play()
+            #pg.mixer.init()
+            #self.game_over_sound=pg.mixer.music.load(GAME_OVER_SOUND)
+            #pg.mixer.music.play()
 
 class Asteroid(pg.sprite.Sprite):    
     score=0
@@ -84,3 +84,6 @@ class Asteroid(pg.sprite.Sprite):
         self.candidates=len(crash)
         if self.candidates > 0: 
             self.boom=True
+            pg.mixer.music.stop()
+            pg.mixer.Sound.play(self.explosion_sound)
+            pg.mixer.Sound.play(self.game_over_sound)
