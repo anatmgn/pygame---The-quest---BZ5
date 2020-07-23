@@ -16,10 +16,10 @@ class Game:
     def __init__(self):
     
     ### PANTALLA ###   
-        self.screen=pg.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
         pg.display.set_caption(GAME_NAME)
-        self.background_image=pg.image.load(BACKGROUND_IMAGE)
-        self.background_image=pg.transform.scale(self.background_image,(SCREEN_WIDTH,SCREEN_HEIGHT))
+        self.screen=pg.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
+        #self.background_image=pg.image.load(BACKGROUND_IMAGE)
+        self.background_image=pg.transform.scale(pg.image.load(BACKGROUND_IMAGE),(SCREEN_WIDTH,SCREEN_HEIGHT))
         self.screen.blit(self.background_image, (0, 0))
 
     ### ELEMENTOS EN PANTALLA ###
@@ -64,28 +64,34 @@ class Game:
 
     def credits(self):
     ### CRÉDITOS DEL JUEGO ###
-        pass #Crear títulos de crédito con draw_text
-
+        self.screen=pg.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
+        self.background_image=pg.transform.scale(pg.image.load(BACKGROUND_IMAGE),(SCREEN_WIDTH,SCREEN_HEIGHT))
+        self.screen.blit(self.background_image, (0, 0))
+        credits1=self.draw_text(CREDITS1,self.font_small,self.screen,SCREEN_WIDTH/2,SCREEN_HEIGHT/4,TEXT_WEAK_COLOUR)
+        credits2=self.draw_text(CREDITS2,self.font_small,self.screen,SCREEN_WIDTH/2,SCREEN_HEIGHT/2,TEXT_WEAK_COLOUR)
+        credits3=self.draw_text(CREDITS3,self.font_small,self.screen,SCREEN_WIDTH/2,SCREEN_HEIGHT*3/4,TEXT_WEAK_COLOUR)
+        
+        pg.display.flip()      
+        pg.time.delay(WAIT)          
+       
     def instructions(self):
     ### INSTRUCCIONES DEL JUEGO ###
-        pass #Crear instrucciones con draw_text
-
+        self.screen=pg.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
+        self.background_image=pg.transform.scale(pg.image.load(BACKGROUND_IMAGE),(SCREEN_WIDTH,SCREEN_HEIGHT))
+        self.screen.blit(self.background_image, (0, 0))
+        intructions1=self.draw_text(INSTRUCTIONS1,self.font_small,self.screen,SCREEN_WIDTH/2,SCREEN_HEIGHT/4,TEXT_WEAK_COLOUR)
+        intructions2=self.draw_text(INSTRUCTIONS2,self.font_small,self.screen,SCREEN_WIDTH/2,SCREEN_HEIGHT/2,TEXT_WEAK_COLOUR)
+        intructions3=self.draw_text(INSTRUCTIONS3,self.font_small,self.screen,SCREEN_WIDTH/2,SCREEN_HEIGHT*3/4,TEXT_WEAK_COLOUR)
+        
+        pg.display.flip()      
+        pg.time.delay(WAIT)          
+       
     def newAsteroid(self,click): 
     ###FUNCIÓN PARA CREAR NUEVOS ASTEROIDES###
         self.asteroid=Asteroid(randint((SCREEN_WIDTH-20),(SCREEN_WIDTH+20)),randint((SCREEN_HEIGHT/50),(SCREEN_HEIGHT-50)))
         self.asteroidsGroup.add(self.asteroid)
         self.asteroid.speed=(randint(ASTEROID_MIN_SPEED,ASTEROID_MAX_SPEED))
         self.new_asteroids_number+=1
-
-'''
-    def start_screen(self):
-        while True:
-            self.draw_text(GAME_NAME,self.font_big,self.screen,SCREEN_WIDTH/2,SCREEN_HEIGHT/3,TEXT_STRONG_COLOUR)
-            self.draw_text(START_MODE,self.font_medium,self.screen,SCREEN_WIDTH/2,SCREEN_HEIGHT/2,TEXT_WEAK_COLOUR)
-            self.draw_text(INSTRUCTIONS,self.font_small,self.screen,SCREEN_WIDTH/2,SCREEN_HEIGHT/1.7,TEXT_WEAK_COLOUR)
-
-            pg.display.update()
-            self.handleEvents()'''
 
     def gameOver(self,click):
     ### FIN DEL JUEGO, PANTALLA FIN ### REVISAR, NO FUNCIONA
@@ -136,7 +142,6 @@ class Game:
 
     def update_game(self,click):
     ### ACTUALIZA PANTALLA Y ELEMENTOS DEL JUEGO ###
-
         self.screen.blit(self.background_image,(0,0))
         self.screen.blit(self.scoreboard,(10,10))
         self.screen.blit(self.scoreboard_data,(170,10))
@@ -148,7 +153,7 @@ class Game:
 
         self.asteroidsGroup.draw(self.screen)
         self.rocketGroup.draw(self.screen)
-        
+
     def game_loop(self,click):
     ### BUCLE DE JUEGO, DEFINE QUÉ SUCEDE EN EL JUEGO ###    
         self.handleEvents()
@@ -170,7 +175,6 @@ class Game:
     def mainloop(self):
     ### BUCLE PRINCIPAL ###
         self.playing=True
-        #self.start_screen()
         self.handleEvents()
         while self.playing:
             click=self.clock.tick(FPS)
@@ -185,7 +189,6 @@ class Game:
     def quit(self):
     ### SALIR ###
         print ("Gracias por jugar a",GAME_NAME)
-        #pg.quit()
         sys.exit(0)
 
 if __name__=='__main__':
@@ -193,29 +196,33 @@ if __name__=='__main__':
     click=clock.tick(FPS)
     game=Game()
    
-    ### OPCIONES DEL MENÚ ### REVISAR, NO APARECEN EN PANTALLA, SALTA A BUCLE JUEGO
-    options=[
-        ("Jugar",game.mainloop()),
-        ("Instrucciones",game.instructions()),
-        ("Créditos",game.credits()),
-        ("Salir",game.quit())
-    ]
-
     pg.font.init()
-    screen=pg.display.set_mode((320,240))
-    background=pg.image.load(BACKGROUND_IMAGE)
+    screen=pg.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
+
+    background_image=pg.transform.scale(pg.image.load(BACKGROUND_IMAGE),(SCREEN_WIDTH,SCREEN_HEIGHT))
+    screen.blit(background_image, (0, 0))
+    
+    font_big=pg.font.Font(FONT,FONT_SIZE_BIG)#
+    game_name= font_big.render(GAME_NAME,True,TEXT_STRONG_COLOUR)
+    screen.blit(game_name,(100, 150))
+    
+    options=[
+        ("Jugar",game.mainloop),
+        ("Instrucciones",game.instructions),
+        ("Créditos",game.credits),
+        ("Salir",game.quit)
+    ]
     menu=Menu(options)
 
     while not exit_game:
         for event in pg.event.get():
             if event.type==QUIT:
                 exit_game=True
-        screen.blit(background,(0,0))
+        screen.blit(background_image,(0,0))
+        screen.blit(game_name,(100, 150))
         menu.update()
         menu.print(screen)
 
         pg.display.flip()
         pg.time.delay(10)
-    #pg.init()
-    #game=Game()
-    #game.mainloop()
+ 

@@ -7,6 +7,13 @@ from constants import *
 
 class Menu: ###EN DESARROLLO###
     def __init__(self,options):
+        self.info_loop=True
+        pg.display.set_caption(GAME_NAME)
+        self.screen=pg.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
+        #self.background_image=pg.image.load(BACKGROUND_IMAGE)
+        self.background_image=pg.transform.scale(pg.image.load(BACKGROUND_IMAGE),(SCREEN_WIDTH,SCREEN_HEIGHT))
+        self.screen.blit(self.background_image, (0, 0))
+
         self.options=options
         self.font=pg.font.Font(FONT,FONT_SIZE_MEDIUM)
         #self.selected=False #Modificado por el siguiente
@@ -24,7 +31,7 @@ class Menu: ###EN DESARROLLO###
                 self.selected+=1
             elif key[K_RETURN]:
                 title,function=self.options[self.selected]
-                print ("Selecciona la opción '%s'." %(title))
+                #print ("Selecciona la opción '%s'." %(title))
                 function()###
         
         if self.selected<0:
@@ -47,7 +54,7 @@ class Menu: ###EN DESARROLLO###
             else:
                 colour=TEXT_WEAK_COLOUR
 
-            image=self.font.render(titulo,1,colour)
+            image=self.font.render(title,1,colour)
             position=(x,y+option_height*index)
             index+=1
             screen.blit(image,position)

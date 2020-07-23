@@ -10,6 +10,11 @@ ASTEROID_MAX_SPEED=5
 ASTEROID_RESIZE_IMAGE=(50,50)
 SIMULTANEUS_ASTEROIDS=10
 
+### CREDITS ###
+CREDITS1='Creado por Ana Tamayo'
+CREDITS2='Para Bootcamp Zero ed.5 de Keepcoding'
+CREDITS3='Julio 2020'
+
 ### FONT ###
 FONT='resources/fonts/dorado.ttf'
 FONT_SIZE_BIG=55
@@ -25,6 +30,12 @@ SCREEN_WIDTH=800
 SCREEN_HEIGHT=600
 TEXT_STRONG_COLOUR=(255,0,0) #red
 TEXT_WEAK_COLOUR=(255,255,255) #white
+WAIT=5000
+
+### INSTRUCTIONS ###
+INSTRUCTIONS1='Pulsa flecha arriba/abajo para mover la nave'
+INSTRUCTIONS2='¡No choques con los asteroides!'
+INSTRUCTIONS3='Cierra ventana para salir'
 
 ### MUSIC ###
 BOOM_SOUND='./resources/sounds/boom_sound.mp3'
