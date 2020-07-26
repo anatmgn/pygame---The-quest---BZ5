@@ -16,14 +16,14 @@ CREDITS2='Para Bootcamp Zero ed.5 de Keepcoding'
 CREDITS3='Julio 2020'
 
 ### FONT ###
-FONT='resources/fonts/dorado.ttf'
+FONT='./resources/fonts/dorado.ttf'
 FONT_SIZE_BIG=55
 FONT_SIZE_MEDIUM=35
 FONT_SIZE_SMALL=25
 
 ### GENERAL ###
-BACKGROUND_IMAGE='resources/images/space.jpg'
-BOOM_IMAGE='resources/images/boom.png'
+BACKGROUND_IMAGE='./resources/images/space.jpg'
+BOOM_IMAGE='./resources/images/boom.png'
 BOOM_RESIZE_IMAGE=(110,90)
 FPS = 60
 SCREEN_WIDTH=800
@@ -38,7 +38,7 @@ INSTRUCTIONS2='¡No choques con los asteroides!'
 INSTRUCTIONS3='Cierra ventana para salir'
 
 ### MUSIC ###
-BOOM_SOUND='./resources/sounds/boom_sound.mp3'
+EXPLOSION_SOUND='./resources/sounds/explosion_sound.mp3'
 GAME_MUSIC='./resources/sounds/game_music.mp3'
 GAME_OVER_SOUND='./resources/sounds/game_over_sound.wav'
 

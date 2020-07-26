@@ -14,11 +14,9 @@ class Game:
     score=0
 
     def __init__(self):
-    
     ### PANTALLA ###   
         pg.display.set_caption(GAME_NAME)
         self.screen=pg.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
-        #self.background_image=pg.image.load(BACKGROUND_IMAGE)
         self.background_image=pg.transform.scale(pg.image.load(BACKGROUND_IMAGE),(SCREEN_WIDTH,SCREEN_HEIGHT))
         self.screen.blit(self.background_image, (0, 0))
 
@@ -34,6 +32,8 @@ class Game:
     
         self.new_asteroids_number=0
         self.simultaneus_asteroids=SIMULTANEUS_ASTEROIDS
+
+        self.game_over=False
     
     ### FUENTES ###   
         pg.font.init()
@@ -49,10 +49,13 @@ class Game:
         
     ### MÚSICA ###
         pg.mixer.init()
+        
+        self.explosion_sound=pg.mixer.music.load(EXPLOSION_SOUND)
+        self.game_over_sound=pg.mixer.music.load(GAME_OVER_SOUND)
         self.game_music=pg.mixer.music.load(GAME_MUSIC)
-        #self.explosion_sound=pg.mixer.Sound(BOOM_SOUND) #MIRAR UBICACIÓN
-        self.game_over_sound=pg.mixer.Sound(GAME_OVER_SOUND)
-        pg.mixer.music.play(-1)#MIRAR UBICACIÓN
+
+        if self.game_over==False:
+            pg.mixer.music.play(-1)
 
     def draw_text(self,text, font, surface, x, y, main_color, background_color=None):   
     ### FUNCIÓN PARA ACONDICIONAR TEXTOS ###
@@ -95,14 +98,7 @@ class Game:
 
     def gameOver(self,click):
     ### FIN DEL JUEGO, PANTALLA FIN ### REVISAR, NO FUNCIONA
-        self.handleEvents(click)
-        
-        self.game_over1=self.font_big.render(GAME_OVER_1_TEXT,True,TEXT_STRONG_COLOUR)
-        self.game_over2=self.font_medium.render(GAME_OVER_2_TEXT,True,TEXT_WEAK_COLOUR)
-        
-      
-        self.screen.blit(self.game_over1,(130, 150))
-        self.screen.blit(self.game_over2,(120, 400))
+        self.asteroid.game_over()
 
     def handleEvents(self):
     ### GESTIÓN DE EVENTOS ###
@@ -111,7 +107,6 @@ class Game:
                 self.quit()
             
             if event.type==K_SPACE:
-                #self.playing=True
                 self.mainloop()
 
             if event.type==KEYDOWN:
@@ -160,8 +155,6 @@ class Game:
         self.rocket.crash_check(self.asteroidsGroup)
 
         self.number_of_asteroids = len(self.asteroidsGroup)
-
-        #pg.mixer.music.play(-1)###
 
         if self.number_of_asteroids<self.simultaneus_asteroids:
             self.newAsteroid(click)

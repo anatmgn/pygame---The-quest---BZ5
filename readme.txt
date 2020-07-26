@@ -62,14 +62,14 @@ Restricciones
     toma el control de la nave no se pueden producir colisiones -> Sin desarrollar.
 
 PANTALLA INICIAL 
-    X Mostrará el nombre y la historia del juego (la búsqueda de otro planeta) -> No funciona.
-    X Indicará como iniciar la partida (con un botón o pulsando una tecla) -> No funciona.
-    X Si el usuario pulsa esa tecla o botón se iniciará la partida -> No funciona.
-    X Mostrará las instrucciones del juego -> No funciona.
+    • Mostrará el nombre y la historia del juego (la búsqueda de otro planeta)
+    • Indicará como iniciar la partida (con un botón o pulsando una tecla)
+    • Si el usuario pulsa esa tecla o botón se iniciará la partida
+    • Mostrará las instrucciones del juego -> No funciona.
 
 Opciones 
-    X Las instrucciones podrán aparecer directamente en la pantalla inicial, o indicar que pulsando una tecla se mostrarán las instrucciones 
-    en otra pantalla o encima de la actual -> Sin desarrollar.
+    • Las instrucciones podrán aparecer directamente en la pantalla inicial, o indicar que pulsando una tecla se mostrarán las instrucciones 
+    en otra pantalla o encima de la actual
  
 RECORDS DEL JUEGO 
     X Podrán almacenarse las 5 o 10 mejores puntuaciones con las iniciales del jugador -> Sin desarrollar.
@@ -79,5 +79,5 @@ RECORDS DEL JUEGO
     X El juego actualizará la tabla de records y los presentará en la pantalla de final de partida -> Sin desarrollar.
 
 Opciones 
-    • Los records pueden mostrarse nada más al final de partida o alternar entre pantalla inicial y pantalla de records. cambiando cada pocos 
+    X Los records pueden mostrarse nada más al final de partida o alternar entre pantalla inicial y pantalla de records. cambiando cada pocos 
     segundos entre una y otra -> Sin desarrollar.

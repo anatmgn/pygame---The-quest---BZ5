@@ -10,13 +10,11 @@ class Menu: ###EN DESARROLLO###
         self.info_loop=True
         pg.display.set_caption(GAME_NAME)
         self.screen=pg.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
-        #self.background_image=pg.image.load(BACKGROUND_IMAGE)
         self.background_image=pg.transform.scale(pg.image.load(BACKGROUND_IMAGE),(SCREEN_WIDTH,SCREEN_HEIGHT))
         self.screen.blit(self.background_image, (0, 0))
 
         self.options=options
         self.font=pg.font.Font(FONT,FONT_SIZE_MEDIUM)
-        #self.selected=False #Modificado por el siguiente
         self.selected=0
         self.total=len(self.options)
         self.pressed=False
@@ -31,8 +29,7 @@ class Menu: ###EN DESARROLLO###
                 self.selected+=1
             elif key[K_RETURN]:
                 title,function=self.options[self.selected]
-                #print ("Selecciona la opción '%s'." %(title))
-                function()###
+                function()
         
         if self.selected<0:
             self.selected=0
@@ -44,9 +41,9 @@ class Menu: ###EN DESARROLLO###
     def print(self,screen):
         total=self.total
         index=0
-        option_height=30#
-        x=200#
-        y=300#
+        option_height=30
+        x=200
+        y=300
 
         for (title,function) in self.options:
             if index==self.selected:
@@ -58,4 +55,3 @@ class Menu: ###EN DESARROLLO###
             position=(x,y+option_height*index)
             index+=1
             screen.blit(image,position)
-            
